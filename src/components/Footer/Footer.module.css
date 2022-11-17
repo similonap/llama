@@ -1,0 +1,23 @@
+.Footer {
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+	color: white;
+}
+
+.red {
+	background: linear-gradient(
+        180deg,
+        rgba(255, 0, 0, 1) 0%,
+		rgb(182, 9, 9) 100%
+    );
+}
+
+.blue {
+	background: linear-gradient(
+		180deg,
+		rgba(13,110,253) 0%,
+		rgb(11, 87, 200) 100%
+	);
+}

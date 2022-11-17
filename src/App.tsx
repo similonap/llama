@@ -1,25 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './components/RootLayout/RootLayout';
+import HomeScreen from './components/HomeScreen/HomeScreen';
+import PortfolioScreen from './components/PortfolioScreen/PortfolioScreen';
+import ButtonCalc from './components/PortfolioScreen/ButtonCalc/ButtonCalc';
+import ColorPicker from './components/PortfolioScreen/ColorPicker/ColorPicker';
+import Slots from './components/PortfolioScreen/Slots/Slots';
+import QuizAppWrapper from './components/PortfolioScreen/QuizApp/QuizApp';
+import TicTacToe from './components/PortfolioScreen/TicTacToe/TicTacToe';
 
-function App() {
+export const ThemeContext = React.createContext({color: "red", setColor: (color: string) => {}});
+
+const App = () => {
+  const [color, setColor] = useState("red");
+  let router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout/>,
+      children: [
+        {
+          path: "home",
+          element: <HomeScreen/>
+        },
+        {
+          path: "portfolio",
+          element: <PortfolioScreen/>
+        },
+        {
+          path: "portfolio/slots",
+          element: <Slots/>
+        },
+        {
+          path: "portfolio/button",
+          element: <ButtonCalc/>
+        },
+        {
+          path: "portfolio/color",
+          element: <ColorPicker/>
+        },
+        {
+          path: "portfolio/quizapp",
+          element: <QuizAppWrapper/>
+        },
+        {
+          path: "portfolio/tictactoe",
+          element: <TicTacToe/>
+        },
+        {
+          path: "",
+          element: <HomeScreen/>
+        }
+      ]
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={{color: color, setColor: setColor}}>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

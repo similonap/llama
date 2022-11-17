@@ -1,0 +1,61 @@
+.HomeScreen {
+
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageBackground {
+    background: linear-gradient(
+        180deg,
+        rgba(13,110,253) 0%,
+        rgb(11, 87, 200) 100%
+    );
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.red {
+	background: linear-gradient(
+        180deg,
+        rgba(255, 0, 0, 1) 0%,
+		rgb(182, 9, 9) 100%
+    );
+}
+
+.blue {
+	background: linear-gradient(
+		180deg,
+		rgba(13,110,253) 0%,
+		rgb(11, 87, 200) 100%
+	);
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.title h1 {
+    color: white;
+    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+}
+
+.title h3 {
+    color: white;
+    text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+}
+
+.logoOverlay {
+    opacity: 0.2;
+    position: absolute; 
+    right: 100px; bottom:0; 
+    height: 250px;
+}
