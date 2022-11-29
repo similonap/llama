@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import styles from './PortfolioScreen.module.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,10 +6,12 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../../App';
 
 interface PortfolioScreenProps {}
 
 const PortfolioScreen: FC<PortfolioScreenProps> = () => {
+  let {navigationItems} = useContext(ThemeContext);
   let navigate = useNavigate();
 
   return (
@@ -18,71 +20,21 @@ const PortfolioScreen: FC<PortfolioScreenProps> = () => {
       <p>Here are some of my projects I have been working on. They are mostly written in React/Typescript because I have focussed mainly on this during my course at AP Hogeschool.</p>
     <div className={styles.center}>
 
+    <div style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr"}}>
+      {navigationItems.map((item, index) => (
+        item.type === "portfolio" ? (
+        <Card style={{ width: '18rem', margin: "10px" }} key={index}>
+          <Card.Body>
+            <Card.Title>{item.title}</Card.Title>
+            <Card.Text>
+              {item.description}
+            </Card.Text>
+            <Button variant="primary" onClick={() => navigate("/" + item.path)}>Go to project</Button>
+          </Card.Body>
+        </Card>) : null
+      ))}
+    </div>
 
-      <Container className="m-4 gx-5 gy-5" style={{width: "70%"}}>
-        <Row className="gx-5">
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Title>Slots</Card.Title>
-                <Card.Text>
-                  This application is a slot machine game. It is made with React.js and Typescript.
-                </Card.Text>
-                <Button variant="primary" onClick={() => { navigate("/portfolio/slots"); }}>Check it out</Button>
-
-              </Card.Body>
-            </Card>
-          </Col> 
-          <Col>
-            <Card>
-                <Card.Body>
-                  <Card.Title>Button Counter</Card.Title>
-                  <Card.Text>
-                    This application is a button counter. It is made with React.js and Typescript.
-                  </Card.Text>
-                  <Button variant="primary" onClick={() => { navigate("/portfolio/button"); }}>Check it out</Button>
-                </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-                <Card.Body>
-                  <Card.Title>Color picker</Card.Title>
-                  <Card.Text>
-                    This application contains a color picker component made with React.js and Typescript.
-                  </Card.Text>
-                  <Button variant="primary" onClick={() => { navigate("/portfolio/color"); }}>Check it out</Button>
-                </Card.Body>
-            </Card>
-          </Col>             
-        </Row>
-        <Row>
-          <Col>
-            <Card>
-              <Card.Body>
-                <Card.Title>Quiz App</Card.Title>
-                <Card.Text>
-                  This application is a quiz game. It is made with React.js and Typescript.
-                </Card.Text>
-                <Button variant="primary" onClick={() => { navigate("/portfolio/quizapp"); }}>Check it out</Button>
-
-              </Card.Body>
-            </Card>
-          </Col> 
-          <Col>
-            <Card>
-                <Card.Body>
-                  <Card.Title>Tic Tac Toe</Card.Title>
-                  <Card.Text>
-                    This application is a tic tac toe game. It is made with React.js and Typescript.
-                  </Card.Text>
-                  <Button variant="primary" onClick={() => { navigate("/portfolio/tictactoe"); }}>Check it out</Button>
-                </Card.Body>
-            </Card>
-          </Col>  
-          <Col></Col>           
-        </Row>
-      </Container>
     </div>
   </div>
   ); 

@@ -1,0 +1,11 @@
+.SearchModal {}
+
+.searchItem {
+    
+}
+
+.searchItem:hover {
+    background-color: #c5e9ff;
+    cursor: pointer;
+    user-select: none;
+}

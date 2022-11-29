@@ -8,13 +8,14 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleMapReact from 'google-map-react';
 import { ThemeContext } from '../../App';
+import ImageWheel from '../ImageWheel/ImageWheel';
 
 interface HomeScreenProps {}
 
 const HomeScreen: FC<HomeScreenProps> = () => {
   let navigate = useNavigate();
   let {color, setColor} = useContext(ThemeContext);
-
+  
   return (
 
   <div className={styles.HomeScreen}>
@@ -84,6 +85,7 @@ const HomeScreen: FC<HomeScreenProps> = () => {
             </Col>
           </Row>
       </Container>
+      <ImageWheel/>
     </div>
   </div>
   );
